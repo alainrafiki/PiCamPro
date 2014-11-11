@@ -37,11 +37,12 @@ import time
 import yuv2rgb
 from pygame.locals import *
 from subprocess import call  
+import RPi.GPIO as GPIO # I moved this up here to see if it will now be recognized.
 
 ############################################################
 # To use the GPIO buttons to take picture, ajust screen brightness, and shutdown the camera
 
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 
 #Set GPIO mode  
 GPIO.setmode(GPIO.BCM) 
@@ -51,7 +52,7 @@ time.sleep(0.5)  # How does  this time.sleep() behave inside of camera app?
 
 # Setup GPIO
 # http://sourceforge.net/p/raspberry-gpio-python/wiki/BasicUsage/ for some understanding on how to setup channels
-GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Already being used for power down of the system
+#GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Already being used for power down of the system
 GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)   # Will use this button 22 for backlight adjustment
 GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)   # Using this button to take pictures with cam.py function takePicture() 
@@ -685,6 +686,9 @@ while(True):
   if (GPIO.input(18) == False): # Make this button snap pictures
     takePicture()
     time.sleep(0.5)
+
+  if (GPIO.input(27) == False): # Exit the camera program at the touch of button 27
+  	quitCallback()
 
 ######################[End GPIO stufff]#############################################
 
