@@ -682,11 +682,10 @@ while(True):
       time.sleep(0.5)  # How does  this time.sleep() behave inside of camera app?
   
   if (GPIO.input(18) == False): # Make this button snap pictures
-  	#print("27 working")
     takePicture()
-  	time.sleep(0.5)
-  
-  ######################[End GPIO stufff]#############################################
+    time.sleep(0.5)
+
+######################[End GPIO stufff]#############################################
 
   # Overlay buttons on display and update
   for i,b in enumerate(buttons[screenMode]):
