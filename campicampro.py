@@ -49,10 +49,11 @@ GPIO.setmode(GPIO.BCM)
 #Give the system a quick break  
 time.sleep(0.5)  # How does  this time.sleep() behave inside of camera app?
 
-#Setup GPIO  
-#GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Already being used for power down of the system
+# Setup GPIO
+# http://sourceforge.net/p/raspberry-gpio-python/wiki/BasicUsage/ for some understanding on how to setup channels
+GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Already being used for power down of the system
 GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)   # Will use this button 22 for backlight adjustment
-#GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
+GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)  
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)   # Using this button to take pictures with cam.py function takePicture() 
    
 #Set up backlight GPIO  
